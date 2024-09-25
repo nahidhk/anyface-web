@@ -1,7 +1,6 @@
 let os = "web";
 let icon = '<i class="bi bi-hdd"></i>'
 
-// Android-এর জন্য চেকটি Linux-এর আগে রাখতে হবে
 if (navigator.userAgent.indexOf("Android") !== -1) {
     os = 'Android';
     icon = '<i class="bi bi-android"></i>';
@@ -35,3 +34,24 @@ if (os == "Windows" || os == "macos" || os == "Linux") {
 } else if (os == "Android" || os.includes("iOS")) {
     myappc.innerHTML = "apps";
 }
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installBtn').addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+        });
+    });
+});
+
+function getstart(){
+    window.location.href="https://anyface.readyoffercareer.com/";
+}
+
