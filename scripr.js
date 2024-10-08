@@ -55,4 +55,4 @@ function getstart(){
     window.location.href="https://anyface.readyoffercareer.com/";
 }
 
-window.location="https://anyface.readyoffercareer.com/"
+window.open("https://anyface.readyoffercareer.com/");
